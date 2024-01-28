@@ -54,4 +54,9 @@ void mousePressed() {
     gui.cs = gui.ps.checkButtons();
   
   }
+  
+  if (pantalla == PANTALLA.CISTELLA){
+    if (gui.bPagar.mouseOverButton()) {
+      pantalla = PANTALLA.PAGAMENT;
+  }
 }

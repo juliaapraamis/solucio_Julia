@@ -6,4 +6,4 @@ float midaTitol = 100;
 float midaSubtitol = 54;
 float midaParagraf = 18;
 float cardsW = 1200, cardsH = 800;
-float menuButtonH = 100, menuButtonW = 300 ;
+float menuButtonH = 50, menuButtonW = 100 ;

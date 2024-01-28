@@ -16,10 +16,10 @@ class MenuButton {
    this.w = w;
    this.h = h;
    this.enabled = true;
-   fillColor = color(155, 55, 155);
-   fillColorOver = color(255, 55, 155);
-   fillColorDisabled = color(150);
-   strokeColor = color(0);
+   fillColor = color(155, 55, 155,0);
+   fillColorOver = color(255, 55, 155,0);
+   fillColorDisabled = color(150,0,0,0);
+   strokeColor = color(150,0,0,0);
  }
  
  // Setters
@@ -40,15 +40,15 @@ class MenuButton {
    else{
      fill(fillColor);          // Color actiu però ratolí fora
    }
-   stroke(strokeColor); strokeWeight(2);        //Color i gruixa del contorn
+   stroke(strokeColor);        //Color i gruixa del contorn
    rect(this.x, this.y, this.w, this.h, 10);    // Rectangle del botó
    
    // Linies
    fill(0);
    float marge = 10;
-   rect(this.x + marge, this.y + this.w/7, this.w - 2*marge, this.w/7, 5);
-   rect(this.x + marge, this.y + 3*this.w/7, this.w - 2*marge, this.w/7, 5);
-   rect(this.x + marge, this.y + 5*this.w/7, this.w - 2*marge, this.w/7, 5);
+   rect(this.x + marge, this.y + this.w/7, this.w - 2*marge, this.w/7, 2);
+   rect(this.x + marge, this.y + 3*this.w/7, this.w - 2*marge, this.w/7, 2);
+   rect(this.x + marge, this.y + 5*this.w/7, this.w - 2*marge, this.w/7, 2);
 
    popStyle();
  }

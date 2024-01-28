@@ -1,7 +1,7 @@
 class GUI {
   //Declaració Components GUI
 
-  Button bLogin, bSignup, bEndRegister, bFinalitzarPagament;
+  Button bLogin, bSignup, bEndRegister, bFinalitzarPagament, bPagar;
   TextField userText, passText, userRepeatPasswText, userPasswText, correuText, userNameText, nomText, llinatgesText, domiciliText, poblacioText, codiPostalText, targetaText, cadText, cvvText;
   PImage imgLogin;
   Timer t;
@@ -58,6 +58,7 @@ class GUI {
   GUI() {
 
     bLogin = new Button("Log in", 904, 549, buttonW, 50);
+    bPagar = new Button("PAGAR", 904, 549, buttonW, 50);
     bEndRegister = new Button ("Finalitzar registre", (width/2)-buttonW/2, 744, buttonW, 50);
     bSignup = new Button ("Sign up", 904, 726, buttonW, 50);
     bFinalitzarPagament = new Button ("Finalitzar pagament", 34, 600, 711, 50);
@@ -100,11 +101,11 @@ class GUI {
     s.setValues(values);
     s.setColors(colorLine);
 
-    mb = new MenuButton(100, 100, menuButtonW, menuButtonH);
-    bOpcio1 = new Button("Inici", mb.x, mb.y + mb.h + 5, menuButtonW, menuButtonH);
-    bOpcio2 = new Button("Catàleg", mb.x, mb.y + mb.h + 10 + menuButtonH, menuButtonW, menuButtonH);
-    bOpcio3 = new Button("Cistella", mb.x, mb.y + mb.h + 15 + 2*menuButtonH, menuButtonW, menuButtonH);
-    bOpcio4 = new Button ("Log Out", mb.x, mb.y + 15 + 2*menuButtonH, menuButtonW, menuButtonH);
+    mb = new MenuButton(1286, 20, menuButtonW, menuButtonH);
+    bOpcio1 = new Button("Inici", mb.x, mb.y + mb.h + 40, menuButtonW, menuButtonH);
+    bOpcio2 = new Button("Catàleg", mb.x, mb.y + mb.h + 40 + menuButtonH, menuButtonW, menuButtonH);
+    bOpcio3 = new Button("Cistella", mb.x, mb.y + mb.h +40+ 2*menuButtonH, menuButtonW, menuButtonH);
+    bOpcio4 = new Button ("Log Out", mb.x, mb.y + 40 + 4*menuButtonH, menuButtonW, menuButtonH);
 
     //Constructor dels componetns
   }
@@ -143,10 +144,10 @@ class GUI {
 
     mb.display();
     if (menuOpened) {
-      bOpcio1.display();
-      bOpcio2.display();
-      bOpcio3.display();
-      bOpcio4.display();
+      bOpcio1.display(20);
+      bOpcio2.display(20);
+      bOpcio3.display(20);
+      bOpcio4.display(20);
     }
   }
 
@@ -174,10 +175,10 @@ class GUI {
     }
     mb.display();
     if (menuOpened) {
-      bOpcio1.display();
-      bOpcio2.display();
-      bOpcio3.display();
-      bOpcio4.display();
+      bOpcio1.display(20);
+      bOpcio2.display(20);
+      bOpcio3.display(20);
+      bOpcio4.display(20);
     }
   }
 
@@ -216,13 +217,21 @@ class GUI {
     cvvText.display();
     mb.display();
     if (menuOpened) {
-      bOpcio1.display();
-      bOpcio2.display();
-      bOpcio3.display();
-      bOpcio4.display();
+      bOpcio1.display(20);
+      bOpcio2.display(20);
+      bOpcio3.display(20);
+      bOpcio4.display(20);
     }
   }
-  void dibuixaPantallaCistella(){}
+  void dibuixaPantallaCistella() {
+    fill(0);
+    textFont(getFirstFont());
+    textSize(100);
+    textAlign(CENTER);
+    text("FARM2HOME", (width/2), 155, 35);
+     bPagar.display(20);
+  }
+
 
   void updateFoto() {
 
