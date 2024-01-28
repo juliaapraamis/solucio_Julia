@@ -50,6 +50,10 @@ class GUI {
   // Icones dels botons
   PImage imgMes, imgMenys;
 
+  MenuButton mb;
+  Button bOpcio1, bOpcio2, bOpcio3, bOpcio4;
+  boolean menuOpened = false;
+
 
   GUI() {
 
@@ -70,7 +74,7 @@ class GUI {
     targetaText = new TextField(34, 404, 711, textFieldH);
     cadText = new TextField(34, 466, 300, textFieldH);
     cvvText = new TextField(345, 466, 200, textFieldH);
-    codiPostalText = new TextField();
+    //codiPostalText = new TextField();
 
     imgLogin = loadImage ("data/usuari.png");
     imgMes = loadImage("mes.png");
@@ -89,12 +93,18 @@ class GUI {
     ps = new PagedProducts(numCardsPage, 50, 50, cardsW, cardsH);
     ps.setData(info);
     ps.setCards(imgMes, imgMenys);
-   
+
 
     // Configuració de Dades (textos, valors, colors)
     s.setTexts(textos);
     s.setValues(values);
     s.setColors(colorLine);
+
+    mb = new MenuButton(100, 100, menuButtonW, menuButtonH);
+    bOpcio1 = new Button("Inici", mb.x, mb.y + mb.h + 5, menuButtonW, menuButtonH);
+    bOpcio2 = new Button("Catàleg", mb.x, mb.y + mb.h + 10 + menuButtonH, menuButtonW, menuButtonH);
+    bOpcio3 = new Button("Cistella", mb.x, mb.y + mb.h + 15 + 2*menuButtonH, menuButtonW, menuButtonH);
+    bOpcio4 = new Button ("Log Out", mb.x, mb.y + 15 + 2*menuButtonH, menuButtonW, menuButtonH);
 
     //Constructor dels componetns
   }
@@ -130,6 +140,14 @@ class GUI {
     strokeWeight(3);
     line(1083, 118, 1405, 118);
     s.display();
+
+    mb.display();
+    if (menuOpened) {
+      bOpcio1.display();
+      bOpcio2.display();
+      bOpcio3.display();
+      bOpcio4.display();
+    }
   }
 
   void dibuixaPantallaProductes() {
@@ -153,6 +171,13 @@ class GUI {
       text(cs.title, width - 280, height/2);
       text(cs.price+"€", width - 280, height/2 + 30);
       text(cs.cQuantity.value, width - 280, height/2 + 60);
+    }
+    mb.display();
+    if (menuOpened) {
+      bOpcio1.display();
+      bOpcio2.display();
+      bOpcio3.display();
+      bOpcio4.display();
     }
   }
 
@@ -189,7 +214,15 @@ class GUI {
     bFinalitzarPagament.display(40);
     cadText.display();
     cvvText.display();
+    mb.display();
+    if (menuOpened) {
+      bOpcio1.display();
+      bOpcio2.display();
+      bOpcio3.display();
+      bOpcio4.display();
+    }
   }
+  void dibuixaPantallaCistella(){}
 
   void updateFoto() {
 

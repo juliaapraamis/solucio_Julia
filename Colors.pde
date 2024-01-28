@@ -2,6 +2,8 @@
   
 // Array de colors
 color[] colors;
+
+color bgColor = color(255);
   
 // Estableix colors de l'App
 void setColors(){

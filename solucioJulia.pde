@@ -1,5 +1,5 @@
 enum PANTALLA {
-  LOGIN, INICIAL, PRODUCTES, SIGNUP, PAGAMENT;
+  LOGIN, INICIAL, PRODUCTES, SIGNUP, PAGAMENT, CISTELLA;
 };
 PANTALLA pantalla = PANTALLA.PAGAMENT;
 GUI gui;
@@ -30,6 +30,9 @@ void draw() {
   case PAGAMENT:
     gui.dibuixaPantallaPagament();
     break;
+    case CISTELLA:
+    gui.dibuixaPantallaCistella();
+    break;
   }
   fill(0);
   text (mouseX+", "+ mouseY, width-300, 100);
@@ -44,4 +47,11 @@ void updateCursor() {
       cursor (ARROW);
     }
   }
+  if(gui.mb.mouseOverButton() || gui.bOpcio1.mouseOverButton() || gui.bOpcio2.mouseOverButton() || gui.bOpcio3.mouseOverButton()){
+      cursor(HAND);
+  }
+  else {
+     cursor(ARROW);
+  }
+  
 }
