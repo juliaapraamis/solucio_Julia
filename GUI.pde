@@ -226,10 +226,22 @@ class GUI {
   void dibuixaPantallaCistella() {
     fill(0);
     textFont(getFirstFont());
+    strokeWeight(3);
+    line(34, 118, 364, 118);
+
+    strokeWeight(3);
+    line(1083, 118, 1405, 118);
     textSize(100);
     textAlign(CENTER);
     text("FARM2HOME", (width/2), 155, 35);
-     bPagar.display(20);
+    bPagar.display(20);
+    mb.display();
+    if (menuOpened) {
+      bOpcio1.display(20);
+      bOpcio2.display(20);
+      bOpcio3.display(20);
+      bOpcio4.display(20);
+    }
   }
 
 
