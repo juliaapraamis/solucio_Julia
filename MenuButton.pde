@@ -47,8 +47,8 @@ class MenuButton {
    fill(0);
    float marge = 10;
    rect(this.x + marge, this.y + this.w/7, this.w - 2*marge, 5, 2);
-   rect(this.x + marge, this.y + 3*this.w/7, this.w - 2*marge, this.w/9, 2);
-   rect(this.x + marge, this.y + 5*this.w/7, this.w - 2*marge, this.w/9, 2);
+   rect(this.x + marge, this.y + 3*this.w/7, this.w - 2*marge, 5, 2);
+   rect(this.x + marge, this.y + 5*this.w/7, this.w - 2*marge, 5, 2);
 
    popStyle();
  }

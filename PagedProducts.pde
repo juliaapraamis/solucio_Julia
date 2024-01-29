@@ -37,8 +37,8 @@ class PagedProducts {
     this.hCard = (h - espai) / 2.0;
 
     // Creació dels botons
-    b1 = new Button("NEXT", 100 + cardsW, 80, buttonW, buttonH);
-    b2 = new Button("PREV", 100 + cardsW, 100 + buttonH, buttonW, buttonH);
+    b1 = new Button("NEXT", 100 + cardsW, 200, buttonW, buttonH);
+    b2 = new Button("PREV", 100 + cardsW, 220 + buttonH, buttonW, buttonH);
 
     this.espai = 20;
   }
@@ -98,14 +98,14 @@ class PagedProducts {
     }
 
     // Informació de la Pàgina
-    fill(0);
+    /*fill(0);
     textSize(18);
-    text("Pag: "+(this.numPage+1)+" / "+(this.numTotalPages+1), x + w + 50, y+10);
+    text("Pag: "+(this.numPage+1)+" / "+(this.numTotalPages+1), x + w + 50, y+10);*/
 
 
     // Dibuixa els botons
-    b1.display(30);
-    b2.display(30);
+    b1.display(15);
+    b2.display(15);
 
     popStyle();
   }

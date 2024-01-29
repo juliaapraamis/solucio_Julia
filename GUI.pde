@@ -91,7 +91,7 @@ class GUI {
 
     s = new LinesDiagram(50, 50, width-100, height - 200);
 
-    ps = new PagedProducts(numCardsPage, 50, 50, cardsW, cardsH);
+    ps = new PagedProducts(numCardsPage, 50, 200, cardsW, cardsH);
     ps.setData(info);
     ps.setCards(imgMes, imgMenys);
 
@@ -152,17 +152,18 @@ class GUI {
   }
 
   void dibuixaPantallaProductes() {
-    //fill(0);
-    //textSize(100);
-    //textFont(getFirstFont());
-    //textAlign(CENTER);
-    //text("FARM2HOME", (width/2), 155, 35);
+    fill(0);
+    textFont(getFirstFont());
+    textSize(100);
+    textAlign(CENTER);
+    text("FARM2HOME", (width/2), 155, 35);
 
-    //strokeWeight(3);
-    //line(34, 118, 364, 118);
+    strokeWeight(3);
+    line(34, 118, 364, 118);
 
     strokeWeight(3);
     line(1083, 118, 1405, 118);
+    
     ps.display();
 
     if (cs!=null) {
