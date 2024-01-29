@@ -54,9 +54,11 @@ class ProductCard {
     if (mouseOver) {
       fill(220, 100, 100);
     }
+    rectMode(CORNER);
     rect(x, y, w, h, b/2);
     
     // Imatge
+    imageMode(CORNER);
     image(this.photo, x+10, y+10, w-20, 3*h/4 -20);
 
     // Títol

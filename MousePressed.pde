@@ -1,19 +1,16 @@
 void mousePressed() {
-  
-   if(gui.mb.mouseOverButton()){
+
+  if (gui.mb.mouseOverButton()) {
     gui.menuOpened = !gui.menuOpened;
-  }
-  else if (gui.menuOpened && gui.bOpcio1.mouseOverButton()){
+  } else if (gui.menuOpened && gui.bOpcio1.mouseOverButton()) {
     println("Opció 1 clickada");
     pantalla= PANTALLA.INICIAL;
     gui.menuOpened = false;
-  }
-  else if (gui.menuOpened && gui.bOpcio2.mouseOverButton()){
+  } else if (gui.menuOpened && gui.bOpcio2.mouseOverButton()) {
     println("Opció 2 clickada");
     pantalla = PANTALLA.PRODUCTES;
     gui.menuOpened = false;
-  }
-  else if (gui.menuOpened && gui.bOpcio3.mouseOverButton()){
+  } else if (gui.menuOpened && gui.bOpcio3.mouseOverButton()) {
     println("Opció 3 clickada");
     pantalla = PANTALLA.CISTELLA;
     gui.menuOpened = false;
@@ -32,6 +29,7 @@ void mousePressed() {
 
     gui.c.checkButtons();
   }
+
   if (pantalla == PANTALLA.SIGNUP) {
     gui.userRepeatPasswText.isPressed();
     gui.userPasswText.isPressed();
@@ -49,14 +47,14 @@ void mousePressed() {
     gui.cadText.isPressed();
     gui.cvvText.isPressed();
   }
-  
-  if (pantalla == PANTALLA.PRODUCTES){
+
+  if (pantalla == PANTALLA.PRODUCTES) {
     gui.cs = gui.ps.checkButtons();
-  
   }
-  
-  if (pantalla == PANTALLA.CISTELLA){
+
+  if (pantalla == PANTALLA.CISTELLA) {
     if (gui.bPagar.mouseOverButton()) {
       pantalla = PANTALLA.PAGAMENT;
+    }
   }
 }
