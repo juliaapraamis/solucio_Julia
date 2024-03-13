@@ -1,6 +1,8 @@
 class GUI {
   //Declaració Components GUI
 
+  Confirm cLogout;
+
   Button bLogin, bSignup, bEndRegister, bFinalitzarPagament, bPagar;
   TextField userText, passText, userRepeatPasswText, userPasswText, correuText, userNameText, nomText, llinatgesText, domiciliText, poblacioText, codiPostalText, targetaText, cadText, cvvText;
   PImage imgLogin;
@@ -59,9 +61,9 @@ class GUI {
 
     bLogin = new Button("Log in", 904, 549, buttonW, 50);
     bPagar = new Button("PAGAR", 904, 549, buttonW, 50);
-    bEndRegister = new Button ("Finalitzar registre", (width/2)-buttonW/2, 744, buttonW, 50);
+    bEndRegister = new Button ("Finalizar registro", (width/2)-buttonW/2, 744, buttonW, 50);
     bSignup = new Button ("Sign up", 904, 726, buttonW, 50);
-    bFinalitzarPagament = new Button ("Finalitzar pagament", 34, 600, 711, 50);
+    bFinalitzarPagament = new Button ("Finalizar pago", 34, 600, 711, 50);
     userText = new TextField(853, 325, textFieldW, textFieldH);
     passText = new TextField(853, 437, textFieldW, textFieldH);
     userRepeatPasswText = new TextField ((width/2)-150, 644, 300, textFieldH);
@@ -94,6 +96,8 @@ class GUI {
     ps = new PagedProducts(numCardsPage, 50, 200, cardsW, cardsH);
     ps.setData(info);
     ps.setCards(imgMes, imgMenys);
+   
+    cLogout = new Confirm("Logout", "¿Quiere cerrar sesión?", width/2, height/2, 600, 340);
 
 
     // Configuració de Dades (textos, valors, colors)
@@ -102,9 +106,9 @@ class GUI {
     s.setColors(colorLine);
 
     mb = new MenuButton(1286, 20, menuButtonW, menuButtonH);
-    bOpcio1 = new Button("Inici", mb.x, mb.y + mb.h + 40, menuButtonW, menuButtonH);
-    bOpcio2 = new Button("Catàleg", mb.x, mb.y + mb.h + 40 + menuButtonH, menuButtonW, menuButtonH);
-    bOpcio3 = new Button("Cistella", mb.x, mb.y + mb.h +40+ 2*menuButtonH, menuButtonW, menuButtonH);
+    bOpcio1 = new Button("Inicio", mb.x, mb.y + mb.h + 40, menuButtonW, menuButtonH);
+    bOpcio2 = new Button("Catálogo", mb.x, mb.y + mb.h + 40 + menuButtonH, menuButtonW, menuButtonH);
+    bOpcio3 = new Button("Cesta", mb.x, mb.y + mb.h +40+ 2*menuButtonH, menuButtonW, menuButtonH);
     bOpcio4 = new Button ("Log Out", mb.x, mb.y + 40 + 4*menuButtonH, menuButtonW, menuButtonH);
 
     //Constructor dels componetns
@@ -149,6 +153,10 @@ class GUI {
       bOpcio3.display(20);
       bOpcio4.display(20);
     }
+
+    if (cLogout.visible) {
+      cLogout.display();
+    }
   }
 
   void dibuixaPantallaProductes() {
@@ -163,7 +171,7 @@ class GUI {
 
     strokeWeight(3);
     line(1083, 118, 1405, 118);
-    
+
     ps.display();
 
     if (cs!=null) {
@@ -180,6 +188,9 @@ class GUI {
       bOpcio2.display(20);
       bOpcio3.display(20);
       bOpcio4.display(20);
+    }
+    if (cLogout.visible) {
+      cLogout.display();
     }
   }
 
@@ -223,6 +234,9 @@ class GUI {
       bOpcio3.display(20);
       bOpcio4.display(20);
     }
+    if (cLogout.visible) {
+      cLogout.display();
+    }
   }
   void dibuixaPantallaCistella() {
     fill(0);
@@ -242,6 +256,9 @@ class GUI {
       bOpcio2.display(20);
       bOpcio3.display(20);
       bOpcio4.display(20);
+    }
+    if (cLogout.visible) {
+      cLogout.display();
     }
   }
 

@@ -10,6 +10,8 @@ void setup() {
   setFonts();
 
   gui = new GUI();
+
+  connexioBBDD();
 }
 
 void draw() {
@@ -30,7 +32,7 @@ void draw() {
   case PAGAMENT:
     gui.dibuixaPantallaPagament();
     break;
-    case CISTELLA:
+  case CISTELLA:
     gui.dibuixaPantallaCistella();
     break;
   }
@@ -47,11 +49,16 @@ void updateCursor() {
       cursor (ARROW);
     }
   }
-  if(gui.mb.mouseOverButton() || gui.bOpcio1.mouseOverButton() || gui.bOpcio2.mouseOverButton() || gui.bOpcio3.mouseOverButton()){
-      cursor(HAND);
+  if (gui.mb.mouseOverButton() || gui.bOpcio1.mouseOverButton() || gui.bOpcio2.mouseOverButton() || gui.bOpcio3.mouseOverButton()) {
+    cursor(HAND);
+  } else {
+    cursor(ARROW);
   }
-  else {
-     cursor(ARROW);
+
+  if ((gui.cLogout.bAceptar.mouseOverButton() && gui.cLogout.bAceptar.enabled) ||
+    (gui.cLogout.bCancelar.mouseOverButton() && gui.cLogout.bCancelar.enabled)) {
+    cursor(HAND);
+  } else {
+    cursor(ARROW);
   }
-  
 }
