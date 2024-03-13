@@ -20,7 +20,7 @@ class Confirm {
    this.message = message;
    this.x = x; this.y = y; 
    this.w = w; this.h = h;
-   this.bAceptar = new Button("Acceptar", x + w/4 - buttonW/2, 
+   this.bAceptar = new Button("Aceptar", x + w/4 - buttonW/2, 
                                          y + h - buttonH*1.5, 
                                          buttonW, buttonH);
    this.bCancelar = new Button("Cancelar", x + 3*w/4 - buttonW/2, 
