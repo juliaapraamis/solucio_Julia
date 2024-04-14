@@ -5,47 +5,75 @@ MySQL msql;
 
 // Paràmetres de la connexió
 String user     = "admin";
-String pass     = "12345";   
+String pass     = "12345";
 String database = "tienda";
 
 
 // Connexió
-void connexioBBDD(){
-    
-    msql = new MySQL( this, "localhost:8889", database, user, pass );
-    
-    // Si la connexió s'ha establert
-    if (msql.connect()){
-      // La connexió s'ha establert correctament
-      println("Connexió establerta :)");
-    }
-    else {
-      // La connexió ha fallat!!!
-      println("Error de Connexió :(");
-    }
+void connexioBBDD() {
+
+  msql = new MySQL( this, "localhost:8889", database, user, pass );
+
+  // Si la connexió s'ha establert
+  if (msql.connect()) {
+    // La connexió s'ha establert correctament
+    println("Connexió establerta :)");
+  } else {
+    // La connexió ha fallat!!!
+    println("Error de Connexió :(");
+  }
 }
 
 // Obté el número de files de la taula
-int getNumRowsTaula(String nomTaula){
+int getNumRowsTaula(String nomTaula) {
   msql.query( "SELECT COUNT(*) AS n FROM %s", nomTaula );
   msql.next();
   int numRows = msql.getInt("n");
   return numRows;
 }
-  
+
 // Obté informació de la taula Unitat
-String[][] getInfoTaulaUnitat(){
-  
+String[][] getInfoTaulaUnitat() {
+
   int numRows = getNumRowsTaula("unitat");
-  
+
   String[][] data = new String[numRows][2];
-  
+
   int nr=0;
   msql.query( "SELECT * FROM unitat" );
+  while (msql.next()) {
+    data[nr][0] = String.valueOf(msql.getInt("numero"));
+    data[nr][1] = msql.getString("nom");
+    nr++;
+  }
+  return data;
+}
+boolean isValidUser(String userName, String password){
+  String q = "SELECT COUNT(*) AS n FROM usuario WHERE usuario = '"+userName+"' AND password='"+password+"'";
+  println(q);
+  msql.query(q);
+  msql.next();
+  println(msql.getInt("n"));
+  return msql.getInt("n")==1;
+}
+
+String[] getNomsTaulaUsuario(){
+  
+  int numRows = getNumRowsTaula("usuario");
+  
+  String[] data = new String[numRows];
+  
+  int nr=0;
+  msql.query( "SELECT nombre FROM usuario" );
   while (msql.next()){
-      data[nr][0] = String.valueOf(msql.getInt("numero"));
-      data[nr][1] = msql.getString("nom");
+      data[nr] = msql.getString("nombre");
       nr++;
   }
   return data;
+}
+
+void insertInfoTaulaUsuario(String usuario, String correo, String password){
+  String q = "INSERT INTO usuario (usuario, correo, password) VALUES ('"+usuario+"','"+correo+"','"+password+"')";
+  println(q);
+  msql.query(q);
 }

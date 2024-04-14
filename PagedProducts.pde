@@ -1,4 +1,3 @@
-
 class PagedProducts {
 
 
@@ -37,8 +36,8 @@ class PagedProducts {
     this.hCard = (h - espai) / 2.0;
 
     // Creació dels botons
-    b1 = new Button("NEXT", 100 + cardsW, 200, buttonW, buttonH);
-    b2 = new Button("PREV", 100 + cardsW, 220 + buttonH, buttonW, buttonH);
+    b1 = new Button("NEXT", 1292, 203, buttonW, buttonH);
+    b2 = new Button("PREV", 1292, 213+buttonH, buttonW, buttonH);
 
     this.espai = 20;
   }

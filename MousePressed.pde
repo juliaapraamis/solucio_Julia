@@ -1,10 +1,11 @@
 void mousePressed() {
 
-  gui.cLogout.setVisible(false);
-
   if (gui.cLogout.bAceptar.mouseOverButton() && gui.cLogout.bAceptar.enabled) {
     pantalla = PANTALLA.LOGIN;
     gui.cLogout.setVisible(false);
+    gui.pPasswMal.setVisible(false);
+    gui.userText.removeAllText();
+    gui.passText.removeAllText();
     println("ACEPTAR");
   } else if (gui.cLogout.bCancelar.mouseOverButton() && gui.cLogout.bCancelar.enabled) {
     gui.cLogout.setVisible(false);
@@ -32,9 +33,16 @@ void mousePressed() {
 
   if (pantalla == PANTALLA.LOGIN) {
     if (gui.bLogin.mouseOverButton()) {
-      pantalla = PANTALLA.INICIAL;
+
+      if (isValidUser(gui.userText.text, gui.passText.text)) {
+        pantalla = PANTALLA.INICIAL;
+      } else {
+        gui.pPasswMal.setVisible(true);
+      }
     } else if (gui.bSignup.mouseOverButton()) {
       pantalla = PANTALLA.SIGNUP;
+    } else if (gui.pPasswMal.bAceptar.mouseOverButton()) {
+      gui.pPasswMal.setVisible(false);
     }
     gui.userText.isPressed();
     gui.passText.isPressed();
@@ -49,26 +57,56 @@ void mousePressed() {
     gui.userPasswText.isPressed();
     gui.correuText.isPressed();
     gui.userNameText.isPressed();
-  }
-
-  if (pantalla == PANTALLA.PAGAMENT) {
-    gui.nomText.isPressed();
-    gui.llinatgesText.isPressed();
-    gui.domiciliText.isPressed();
-    gui.poblacioText.isPressed();
-    gui.codiPostalText.isPressed();
-    gui.targetaText.isPressed();
-    gui.cadText.isPressed();
-    gui.cvvText.isPressed();
-  }
-
-  if (pantalla == PANTALLA.PRODUCTES) {
-    gui.cs = gui.ps.checkButtons();
-  }
-
-  if (pantalla == PANTALLA.CISTELLA) {
-    if (gui.bPagar.mouseOverButton()) {
-      pantalla = PANTALLA.PAGAMENT;
+    if (/*!gui.userNameText.text.equals("") && !gui.correuText.text.equals("") && gui.passText.text.equals(gui.userRepeatPasswText.text) &&*/ gui.passText.text!="") {
+      if (gui.bEndRegister.mouseOverButton()) {
+        insertInfoTaulaUsuario(gui.userNameText.text, gui.correuText.text, gui.passText.text);
+        gui.pUsuarioCreado.setVisible(true);
+      }
+      if (gui.pUsuarioCreado.visible) {
+        if (gui.pUsuarioCreado.bAceptar.mouseOverButton()) {
+          pantalla = PANTALLA.INICIAL;
+          gui.pUsuarioCreado.setVisible(false);
+        }
+      }
+    } else {
+      if (gui.bEndRegister.mouseOverButton()) {
+        gui.pUsuarioNoCreado.setVisible(true);
+      }
+      if (gui.pUsuarioNoCreado.visible) {
+        if (gui.pUsuarioNoCreado.bAceptar.mouseOverButton()) {
+          pantalla = PANTALLA.SIGNUP;
+          gui.pUsuarioNoCreado.setVisible(false);
+        }
+      }
     }
   }
+
+
+
+
+
+
+
+
+
+if (pantalla == PANTALLA.PAGAMENT) {
+  gui.nomText.isPressed();
+  gui.llinatgesText.isPressed();
+  gui.domiciliText.isPressed();
+  gui.poblacioText.isPressed();
+  gui.codiPostalText.isPressed();
+  gui.targetaText.isPressed();
+  gui.cadText.isPressed();
+  gui.cvvText.isPressed();
+}
+
+if (pantalla == PANTALLA.PRODUCTES) {
+  gui.cs = gui.ps.checkButtons();
+}
+
+if (pantalla == PANTALLA.CISTELLA) {
+  if (gui.bPagar.mouseOverButton()) {
+    pantalla = PANTALLA.PAGAMENT;
+  }
+}
 }

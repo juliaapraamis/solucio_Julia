@@ -1,7 +1,8 @@
 class GUI {
   //Declaració Components GUI
 
-  Confirm cLogout;
+  Confirm cLogout; 
+  PopUp pPasswMal, pUsuarioCreado, pUsuarioNoCreado;
 
   Button bLogin, bSignup, bEndRegister, bFinalitzarPagament, bPagar;
   TextField userText, passText, userRepeatPasswText, userPasswText, correuText, userNameText, nomText, llinatgesText, domiciliText, poblacioText, codiPostalText, targetaText, cadText, cvvText;
@@ -93,12 +94,21 @@ class GUI {
 
     s = new LinesDiagram(50, 50, width-100, height - 200);
 
-    ps = new PagedProducts(numCardsPage, 50, 200, cardsW, cardsH);
+    ps = new PagedProducts(numCardsPage, (width/2)-cardsW/2, 200, cardsW, cardsH);
     ps.setData(info);
     ps.setCards(imgMes, imgMenys);
    
-    cLogout = new Confirm("Logout", "¿Quiere cerrar sesión?", width/2, height/2, 600, 340);
-
+    cLogout = new Confirm("Logout", "¿Quiere cerrar sesión?", (width/2)-300, (height/2)-170, 600, 340);
+    cLogout.setVisible(false); 
+    
+    pPasswMal = new PopUp("¡¡CUIDADO!!", "El usuario o la contraseña no son correctos", (width/2)-300, (height/2)-170, 600, 340);
+    pPasswMal.setVisible(false);
+    
+    pUsuarioCreado = new PopUp("¡¡ENHORABUENA!!", "Su usuario se ha creado correctamente", (width/2)-300, (height/2)-170, 600, 340);
+    pUsuarioCreado.setVisible(false);
+    
+    pUsuarioNoCreado = new PopUp("¡¡CUIDADO!!", "Su usuario no se ha creado correctamente", (width/2)-300, (height/2)-170, 600, 340);
+    pUsuarioNoCreado.setVisible(false);
 
     // Configuració de Dades (textos, valors, colors)
     s.setTexts(textos);
@@ -128,7 +138,15 @@ class GUI {
 
     fill(0);
     textSize(24);
+    textAlign(LEFT);
     text ("or", 1039, 656, 200, 35);
+    text ("Usuario:", 853, 310);
+    text ("Contraseña:", 853, 422);
+    
+    if (pPasswMal.visible) {
+      pPasswMal.display();
+    }
+   
   }
 
 
@@ -203,6 +221,19 @@ class GUI {
 
     imageMode (CENTER);
     image(imgLogin, width/2, 214, 250, 150);
+    
+    fill(0);
+    textSize(24);
+    textAlign(LEFT);
+    text ("Nombre de usuario:", (width/2)-150, 329);
+    text ("Correo electrónico:", (width/2)-150, 429);
+    text ("Contraseña:", (width/2)-150, 529);
+    text ("Repetir contraseña:", (width/2)-150, 629);
+    
+    pUsuarioCreado.display();
+    pUsuarioNoCreado.display();
+    
+    
   }
 
   void dibuixaPantallaPagament() {
