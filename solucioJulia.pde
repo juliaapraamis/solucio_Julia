@@ -8,10 +8,12 @@ void setup() {
   fullScreen();
   setColors();
   setFonts();
+  
+  connexioBBDD();
 
   gui = new GUI();
 
-  connexioBBDD();
+  
 }
 
 void draw() {

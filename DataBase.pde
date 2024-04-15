@@ -26,6 +26,7 @@ void connexioBBDD() {
 
 // Obté el número de files de la taula
 int getNumRowsTaula(String nomTaula) {
+  println(nomTaula);
   msql.query( "SELECT COUNT(*) AS n FROM %s", nomTaula );
   msql.next();
   int numRows = msql.getInt("n");
@@ -33,21 +34,30 @@ int getNumRowsTaula(String nomTaula) {
 }
 
 // Obté informació de la taula Unitat
-String[][] getInfoTaulaUnitat() {
+String[][] getInfoTaulaProducte() {
 
-  int numRows = getNumRowsTaula("unitat");
+  int numRows = getNumRowsTaula("productos");
 
-  String[][] data = new String[numRows][2];
+  String[][] data = new String[numRows][7];
 
   int nr=0;
-  msql.query( "SELECT * FROM unitat" );
+  String q = "SELECT p.idproductos AS ID, p.información AS TITULO, p.categoría AS CATEGORIA, p.información AS INFO, p.precioUnitario AS PRECIO, p.favorito AS FAVORITO, p.imagen_nombre AS FOTO FROM productos p ORDER BY  ID ASC";
+  println(q);
+  msql.query( q);
   while (msql.next()) {
-    data[nr][0] = String.valueOf(msql.getInt("numero"));
-    data[nr][1] = msql.getString("nom");
+    data[nr][0] = msql.getString("ID");
+    data[nr][1] = msql.getString("TITULO");
+    data[nr][2] = msql.getString("CATEGORIA");
+    data[nr][3] = msql.getString("INFO");
+    data[nr][4] = String.valueOf(msql.getFloat("PRECIO"));
+    data[nr][5] = msql.getString("FAVORITO").equals("S") ? "true" : "false";
+    data[nr][6] = msql.getString("FOTO");
     nr++;
   }
   return data;
 }
+
+
 boolean isValidUser(String userName, String password){
   String q = "SELECT COUNT(*) AS n FROM usuario WHERE usuario = '"+userName+"' AND password='"+password+"'";
   println(q);
@@ -76,4 +86,13 @@ void insertInfoTaulaUsuario(String usuario, String correo, String password){
   String q = "INSERT INTO usuario (usuario, correo, password) VALUES ('"+usuario+"','"+correo+"','"+password+"')";
   println(q);
   msql.query(q);
+}
+
+void printArray2D(String[][] array){
+  for(int i=0; i<array.length; i++){
+    for(int j=0; j<array[i].length; j++){
+      print(array[i][j]+"\t");
+    }
+    println();
+  }
 }

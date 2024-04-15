@@ -20,9 +20,9 @@ class Button {
    this.w = w;
    this.h = h;
    this.enabled = true;
-   fillColor = color(155, 55, 155); //Puc canviar
-   fillColorOver = color(255, 55, 155);
-   fillColorDisabled = color(150);
+   fillColor = color(#4B97AE); //Puc canviar
+   fillColorOver = color(#54B9D0);
+   fillColorDisabled = color(#4B97AE);
    strokeColor = color(0);
  }
  

@@ -98,8 +98,8 @@ class PagedProducts {
 
     // Informació de la Pàgina
     /*fill(0);
-    textSize(18);
-    text("Pag: "+(this.numPage+1)+" / "+(this.numTotalPages+1), x + w + 50, y+10);*/
+     textSize(18);
+     text("Pag: "+(this.numPage+1)+" / "+(this.numTotalPages+1), x + w + 50, y+10);*/
 
 
     // Dibuixa els botons
@@ -148,6 +148,21 @@ class PagedProducts {
 
         if (mouseX > xc && mouseX < xc + wCard &&
           mouseY > yc && mouseY < yc + hCard) {
+          return i;
+        }
+      }
+    }
+    return -1;
+  }
+
+  int  numShopButtonPressed() {
+    int firstCardPage = numCardsPage*numPage;
+    int lastCardPage  = numCardsPage*(numPage+1) - 1;
+
+    for (int i = firstCardPage; i <= lastCardPage; i++) {
+      if (i<products.length) {
+
+        if (this.products[i].shopButtonPressed()) {
           return i;
         }
       }

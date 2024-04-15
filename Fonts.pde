@@ -8,7 +8,7 @@ void setFonts(){
     this.fonts = new PFont[3];
     this.fonts[0] = createFont("fonts/Chapaza.ttf", midaTitol);
     this.fonts[1] = createFont("fonts/Chapaza Italic.ttf", midaSubtitol);
-    this.fonts[2] = createFont("fonts/Chapaza.ttf", midaParagraf);
+    this.fonts[2] = createFont("fonts/Louis George Cafe.ttf", midaParagraf);
 }
   
   // Getter del número de fonts

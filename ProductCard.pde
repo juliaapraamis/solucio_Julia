@@ -81,12 +81,19 @@ class ProductCard {
     fill(0);  
     textAlign(RIGHT); 
     textSize(14);
-    text(category, x + w - 10, y + 25);
+    if(category!=null){
+      text(category, x + w - 10, y + 25);
+    }
     
     this.cQuantity.display();
     this.bShop.display(30);
 
     popStyle();
+  }
+  
+  
+  boolean shopButtonPressed(){
+    return bShop.mouseOverButton();
   }
  
 

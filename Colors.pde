@@ -8,11 +8,11 @@ color bgColor = color(255);
 // Estableix colors de l'App
 void setColors(){
     this.colors = new color[5];
-    this.colors[0] = color(#068D9D);
-    this.colors[1] = color(#53599A);
-    this.colors[2] = color(#6D9DC5);
-    this.colors[3] = color(#80DED9);
-    this.colors[4] = color(#AEECEF);
+    this.colors[0] = color(#A6DDE7);
+    this.colors[1] = color(#8BCDDC);
+    this.colors[2] = color(#54B9D0);
+    this.colors[3] = color(#4B97AE);
+    this.colors[4] = color(#33768A);
 }
   
   // Getter del número de colors
