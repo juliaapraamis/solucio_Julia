@@ -240,6 +240,7 @@ class GUI {
   }
 
   void dibuixaPantallaSignup() {
+    getThirdFont();
     bEndRegister.display(30);
     userRepeatPasswText.display();
     userPasswText.display();

@@ -61,7 +61,6 @@ class TextField {
         if (isKeyCapitalLetter || isKeySmallLetter || isKeyNumber) {
           addText(key);
         }
-       
       }
     }
   }
@@ -95,8 +94,8 @@ class TextField {
       selected = false;
     }
   }
-  
-  void removeAllText(){
-     this.text = "";
-   }
+
+  void removeAllText() {
+    this.text = "";
+  }
 }
