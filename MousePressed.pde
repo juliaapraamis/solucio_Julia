@@ -58,15 +58,13 @@ void mousePressed() {
     gui.correuText.isPressed();
     gui.userNameText.isPressed();
     // DADES OK
-    
+
     if (gui.pUsuarioCreado.visible) {
       if (gui.pUsuarioCreado.bAceptar.mouseOverButton()) {
         pantalla = PANTALLA.INICIAL;
         gui.pUsuarioCreado.setVisible(false);
       }
-    }
-
-    else if (!gui.userNameText.text.equals("") && !gui.correuText.text.equals("") && gui.userPasswText.text.equals(gui.userRepeatPasswText.text) && !gui.userPasswText.text.equals("")) {
+    } else if (!gui.userNameText.text.equals("") && !gui.correuText.text.equals("") && gui.userPasswText.text.equals(gui.userRepeatPasswText.text) && !gui.userPasswText.text.equals("")) {
       if (gui.bEndRegister.mouseOverButton()) {
         insertInfoTaulaUsuario(gui.userNameText.text, gui.correuText.text, gui.userPasswText.text);
         gui.pUsuarioCreado.setVisible(true);
@@ -75,18 +73,13 @@ void mousePressed() {
           gui.pUsuarioCreado.setVisible(false);
         }
       }
-    } 
-    else if (gui.bEndRegister.mouseOverButton()){
+    } else if (gui.bEndRegister.mouseOverButton()) {
       gui.pUsuarioNoCreado.setVisible(true);
-      if (gui.pUsuarioNoCreado.bAceptar.mouseOverButton()){
+      if (gui.pUsuarioNoCreado.bAceptar.mouseOverButton()) {
         pantalla = PANTALLA.SIGNUP;
         gui.pUsuarioNoCreado.setVisible(false);
-      
       }
-    
-    }
-    
-     else if (gui.pUsuarioNoCreado.visible) {
+    } else if (gui.pUsuarioNoCreado.visible) {
       if (gui.pUsuarioNoCreado.bAceptar.mouseOverButton()) {
         pantalla = PANTALLA.SIGNUP;
         gui.pUsuarioNoCreado.setVisible(false);
@@ -98,14 +91,6 @@ void mousePressed() {
     }
   }
 
-
-
-
-
-
-
-
-
   if (pantalla == PANTALLA.PAGAMENT) {
     gui.nomText.isPressed();
     gui.llinatgesText.isPressed();
@@ -115,23 +100,41 @@ void mousePressed() {
     gui.targetaText.isPressed();
     gui.cadText.isPressed();
     gui.cvvText.isPressed();
+
+    if (gui.bFinalitzarPagament.mouseOverButton()) {
+      gui.cFinalizarPago.setVisible(true);
+    }
+
+    if (gui.cFinalizarPago.bAceptar.mouseOverButton()) {
+      gui.pCompraRealizada.setVisible(true);
+      gui.cFinalizarPago.setVisible(false);
+    }
+    if (gui.pCompraRealizada.bAceptar.mouseOverButton()) {
+      gui.pCompraRealizada.setVisible(false);
+      pantalla = PANTALLA.INICIAL;
+    }
+
+    if (gui.cFinalizarPago.bCancelar.mouseOverButton()) {
+      gui.cFinalizarPago.setVisible(false);
+    }
   }
+
 
   if (pantalla == PANTALLA.PRODUCTES) {
     gui.cs = gui.ps.checkButtons();
-    
+
     int ncShop = gui.ps.numShopButtonPressed();
     println("NUM CARD SHOP: "+ncShop);
-    if(ncShop!=-1){
-        ProductCard pcs = gui.ps.products[ncShop];
-        String id = pcs.id;
-        String nom = pcs.title;
-        float pvp = pcs.price;
-        int cantidad = pcs.cQuantity.value;
-        LiniaCesta l = new LiniaCesta(id, nom, pvp, cantidad);
-        gui.lineasCesta[gui.numLineasCesta] = l;
-        gui.numLineasCesta++;
-        println(gui.numLineasCesta);
+    if (ncShop!=-1) {
+      ProductCard pcs = gui.ps.products[ncShop];
+      String id = pcs.id;
+      String nom = pcs.title;
+      float pvp = pcs.price;
+      int cantidad = pcs.cQuantity.value;
+      LiniaCesta l = new LiniaCesta(id, nom, pvp, cantidad);
+      gui.lineasCesta[gui.numLineasCesta] = l;
+      gui.numLineasCesta++;
+      println(gui.numLineasCesta);
     }
   }
 

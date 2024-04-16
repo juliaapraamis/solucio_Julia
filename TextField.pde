@@ -40,7 +40,7 @@ class TextField {
     rect(x, y, w, h, 5);
 
     fill(fgColor);
-    textSize(textSize);
+    textFont(fonts[2],textSize);
     text(text, x + 5, y + textSize);
     popStyle();
   }
@@ -57,8 +57,11 @@ class TextField {
         boolean isKeyCapitalLetter = (key >= 'A' && key <= 'Z');
         boolean isKeySmallLetter = (key >= 'a' && key <= 'z');
         boolean isKeyNumber = (key >= '0' && key <= '9');
+        boolean isCaractSpecial = (key == '@' || key == '/' || key == ',' || key == 'ñ' || key == 'ç' || key == 'á' || key == 'à' || key == 'é'|| key =='è'|| key =='í'|| key =='ó'|| key =='ò'|| key =='ú'
+        || key == 'Ñ'|| key =='Ç'|| key =='À'|| key =='Á'|| key =='È'|| key =='É'|| key =='Í'|| key =='Ò'|| key =='Ó'|| key =='Ú');
+        
 
-        if (isKeyCapitalLetter || isKeySmallLetter || isKeyNumber) {
+        if (isKeyCapitalLetter || isKeySmallLetter || isKeyNumber || isCaractSpecial) {
           addText(key);
         }
       }

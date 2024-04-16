@@ -1,8 +1,8 @@
 class GUI {
   //Declaració Components GUI
 
-  Confirm cLogout;
-  PopUp pPasswMal, pUsuarioCreado, pUsuarioNoCreado;
+  Confirm cLogout, cFinalizarPago;
+  PopUp pPasswMal, pUsuarioCreado, pUsuarioNoCreado, pCompraRealizada;
 
   Button bLogin, bSignup, bEndRegister, bFinalitzarPagament, bPagar;
   TextField userText, passText, userRepeatPasswText, userPasswText, correuText, userNameText, nomText, llinatgesText, domiciliText, poblacioText, codiPostalText, targetaText, cadText, cvvText;
@@ -112,6 +112,9 @@ class GUI {
     cLogout = new Confirm("Logout", "¿Quiere cerrar sesión?", (width/2)-300, (height/2)-170, 600, 340);
     cLogout.setVisible(false);
 
+    cFinalizarPago = new Confirm ("Finalizar Pago", "¿Quiere finalizar el pago?", (width/2)-300, (height/2)-170, 600, 340 );
+    cFinalizarPago.setVisible(false);
+
     pPasswMal = new PopUp("¡¡CUIDADO!!", "El usuario o la contraseña no son correctos", (width/2)-300, (height/2)-170, 600, 340);
     pPasswMal.setVisible(false);
 
@@ -120,6 +123,9 @@ class GUI {
 
     pUsuarioNoCreado = new PopUp("¡¡CUIDADO!!", "Su usuario no se ha creado correctamente", (width/2)-300, (height/2)-170, 600, 340);
     pUsuarioNoCreado.setVisible(false);
+
+    pCompraRealizada = new PopUp("¡¡ENHORABUENA!!", "Su compra se ha realizado correctamente", (width/2)-300, (height/2)-170, 600, 340 );
+    pCompraRealizada.setVisible(false);
 
     // Configuració de Dades (textos, valors, colors)
     s.setTexts(textos);
@@ -165,19 +171,22 @@ class GUI {
 
   void dibuixaPantallaInicial() {
     
-    /*fill(0);
+    pushMatrix();
+
+    fill(0);
     textSize(10);
     textFont(getSecondFont());
     textAlign(CENTER);
     text("EL MEJOR SUPERMERCADO", 914, 772);
 
-
+    
     imageMode (CORNER);
     scale(0.5);
     image(imgBlackFriday, 1000, 400, 1666, 1000);
-    image (imgRebajas, 34, 400);*/
-    
-    
+    image (imgRebajas, 34, 400);
+    popMatrix();
+
+
     fill(0);
     textSize(100);
     textFont(getFirstFont());
@@ -219,14 +228,7 @@ class GUI {
     textFont (getThirdFont());
     ps.display();
 
-    if (cs!=null) {
-      fill(0);
-      textSize(24);
-      textAlign(LEFT);
-      text(cs.title, width - 280, height/2);
-      text(cs.price+"€", width - 280, height/2 + 30);
-      text(cs.cQuantity.value, width - 280, height/2 + 60);
-    }
+
     mb.display();
     if (menuOpened) {
       bOpcio1.display(20);
@@ -303,6 +305,9 @@ class GUI {
     }
     if (cLogout.visible) {
       cLogout.display();
+    }
+    if (cFinalizarPago.visible) {
+      cFinalizarPago.display();
     }
   }
   void dibuixaPantallaCistella() {

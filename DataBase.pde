@@ -33,7 +33,7 @@ int getNumRowsTaula(String nomTaula) {
   return numRows;
 }
 
-// Obté informació de la taula Unitat
+// Obté informació de la taula Producte
 String[][] getInfoTaulaProducte() {
 
   int numRows = getNumRowsTaula("productos");
@@ -67,6 +67,8 @@ boolean isValidUser(String userName, String password){
   return msql.getInt("n")==1;
 }
 
+
+
 String[] getNomsTaulaUsuario(){
   
   int numRows = getNumRowsTaula("usuario");
@@ -87,6 +89,20 @@ void insertInfoTaulaUsuario(String usuario, String correo, String password){
   println(q);
   msql.query(q);
 }
+
+/*void insertCompraTaulaUsuario(int compra){
+  String q = "INSERT INTO usuario (compra) VALUES (compra)";
+  println(q);
+  msql.query(q);
+
+}*/
+
+/*void insertTarjetaTaulaUsuario(int tarjeta){
+  String q = "INSERT INTO usuario (tarjeta) VALUES (tarjeta)";
+  println(q);
+  msql.query(q);
+
+}*/
 
 void printArray2D(String[][] array){
   for(int i=0; i<array.length; i++){

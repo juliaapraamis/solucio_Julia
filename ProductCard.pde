@@ -77,7 +77,7 @@ class ProductCard {
     // Categoria
     fill(100, 100, 200); 
     noStroke();
-    rect(x + w - 80, y + 8, 80, 30);
+    rect(x + w - 333, y + 8, 333, 30);
     fill(0);  
     textAlign(RIGHT); 
     textSize(14);
