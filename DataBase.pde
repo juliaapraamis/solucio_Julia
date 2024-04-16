@@ -33,6 +33,13 @@ int getNumRowsTaula(String nomTaula) {
   return numRows;
 }
 
+int getNumRowsQuery(String q) {
+  msql.query(q);
+  msql.next();
+  int numRows = msql.getInt("n");
+  return numRows;
+}
+
 // Obté informació de la taula Producte
 String[][] getInfoTaulaProducte() {
 
@@ -58,7 +65,7 @@ String[][] getInfoTaulaProducte() {
 }
 
 
-boolean isValidUser(String userName, String password){
+boolean isValidUser(String userName, String password) {
   String q = "SELECT COUNT(*) AS n FROM usuario WHERE usuario = '"+userName+"' AND password='"+password+"'";
   println(q);
   msql.query(q);
@@ -69,44 +76,74 @@ boolean isValidUser(String userName, String password){
 
 
 
-String[] getNomsTaulaUsuario(){
-  
+String[] getNomsTaulaUsuario() {
+
   int numRows = getNumRowsTaula("usuario");
-  
+
   String[] data = new String[numRows];
-  
+
   int nr=0;
   msql.query( "SELECT nombre FROM usuario" );
-  while (msql.next()){
-      data[nr] = msql.getString("nombre");
-      nr++;
+  while (msql.next()) {
+    data[nr] = msql.getString("nombre");
+    nr++;
   }
   return data;
 }
 
-void insertInfoTaulaUsuario(String usuario, String correo, String password){
+void insertInfoTaulaUsuario(String usuario, String correo, String password) {
   String q = "INSERT INTO usuario (usuario, correo, password) VALUES ('"+usuario+"','"+correo+"','"+password+"')";
   println(q);
   msql.query(q);
 }
 
+String [] getNombresTablaImagen() {
+
+  int numRows = getNumRowsQuery("SELECT COUNT(*) AS n FROM imagen WHERE tipo='oferta'");
+
+  String[] data = new String[numRows];
+
+  int nr=0;
+  msql.query( "SELECT nombre FROM imagen WHERE tipo='oferta'" );
+  while (msql.next()) {
+    data[nr] = msql.getString("nombre");
+    nr++;
+  }
+  return data;
+}
+
 /*void insertCompraTaulaUsuario(int compra){
-  String q = "INSERT INTO usuario (compra) VALUES (compra)";
+ String q = "INSERT INTO usuario (compra) VALUES (compra)";
+ println(q);
+ msql.query(q);
+ 
+ }*/
+
+/*void insertInfoTaulaUsuario(String nombre, String localidad, float tarjeta,){
+ String q = "INSERT INTO usuario (nombre, localidad, tarjeta) VALUES ('"+nombre+"','"+localidad+"','"+tarjeta+"')";
+ println(q);
+ msql.query(q);
+ 
+ }*/
+
+void updateInfoCliente(String usuario, String nombre, String localidad, String targeta) {
+  String q ="UPDATE `usuario` SET `nombre` = '"+nombre+"', `localidad` = '"+localidad+"', `tarjeta` = '"+targeta+"' WHERE `usuario`.`usuario` = '"+usuario+"'";
   println(q);
   msql.query(q);
 
-}*/
+  // Num Compres
+  msql.query( "SELECT compra FROM `usuario` WHERE `usuario`.`usuario` = '"+usuario+"'");
+  msql.next();
+  int nc = msql.getInt("compra") + 1;
 
-/*void insertTarjetaTaulaUsuario(int tarjeta){
-  String q = "INSERT INTO usuario (tarjeta) VALUES (tarjeta)";
-  println(q);
-  msql.query(q);
+  String qc ="UPDATE `usuario` SET `compra` = '"+nc+"' WHERE `usuario`.`usuario` = '"+usuario+"'";
+  println(qc);
+  msql.query(qc);
+}
 
-}*/
-
-void printArray2D(String[][] array){
-  for(int i=0; i<array.length; i++){
-    for(int j=0; j<array[i].length; j++){
+void printArray2D(String[][] array) {
+  for (int i=0; i<array.length; i++) {
+    for (int j=0; j<array[i].length; j++) {
       print(array[i][j]+"\t");
     }
     println();

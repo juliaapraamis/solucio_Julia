@@ -15,7 +15,7 @@ void keyPressed() {
     gui.cadText.keyPressed(key, (int)keyCode);
     gui.codiPostalText.keyPressed(key, (int)keyCode);
     gui.nomText.keyPressed(key, (int)keyCode);
-    gui.llinatgesText.keyPressed(key, (int)keyCode);
+    //gui.llinatgesText.keyPressed(key, (int)keyCode);
     gui.domiciliText.keyPressed(key, (int)keyCode);
     gui.poblacioText.keyPressed(key, (int)keyCode);
     gui.targetaText.keyPressed(key, (int)keyCode);

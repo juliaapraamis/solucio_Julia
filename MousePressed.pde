@@ -93,28 +93,24 @@ void mousePressed() {
 
   if (pantalla == PANTALLA.PAGAMENT) {
     gui.nomText.isPressed();
-    gui.llinatgesText.isPressed();
+    //gui.llinatgesText.isPressed();
     gui.domiciliText.isPressed();
     gui.poblacioText.isPressed();
     gui.codiPostalText.isPressed();
     gui.targetaText.isPressed();
     gui.cadText.isPressed();
-    gui.cvvText.isPressed();
+    //gui.cvvText.isPressed();
 
     if (gui.bFinalitzarPagament.mouseOverButton()) {
+      updateInfoCliente(gui.userText.text, gui.nomText.text, gui.poblacioText.text, gui.targetaText.text);
       gui.cFinalizarPago.setVisible(true);
-    }
-
-    if (gui.cFinalizarPago.bAceptar.mouseOverButton()) {
+    } else if (gui.cFinalizarPago.visible  && gui.cFinalizarPago.bAceptar.mouseOverButton()) {
       gui.pCompraRealizada.setVisible(true);
       gui.cFinalizarPago.setVisible(false);
-    }
-    if (gui.pCompraRealizada.bAceptar.mouseOverButton()) {
+    } else if (gui.pCompraRealizada.visible && gui.pCompraRealizada.bAceptar.mouseOverButton()) {
       gui.pCompraRealizada.setVisible(false);
       pantalla = PANTALLA.INICIAL;
-    }
-
-    if (gui.cFinalizarPago.bCancelar.mouseOverButton()) {
+    } else if (gui.cFinalizarPago.visible  && gui.cFinalizarPago.bCancelar.mouseOverButton()) {
       gui.cFinalizarPago.setVisible(false);
     }
   }
@@ -135,6 +131,14 @@ void mousePressed() {
       gui.lineasCesta[gui.numLineasCesta] = l;
       gui.numLineasCesta++;
       println(gui.numLineasCesta);
+      gui.totalCesta += l.pu * l.cantidad;
+
+      if (gui.cs.shopButtonPressed()) {
+         gui.pProductoAdded.setVisible(true);
+      }
+      if (gui.pProductoAdded.visible && gui.pProductoAdded.bAceptar.mouseOverButton()) {
+        gui.pProductoAdded.setVisible(false);
+      }
     }
   }
 

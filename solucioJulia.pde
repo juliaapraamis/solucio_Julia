@@ -4,12 +4,19 @@ enum PANTALLA {
 PANTALLA pantalla = PANTALLA.LOGIN;
 GUI gui;
 
+String[] fotosOferta;
+String fotoOfertaSeleccionada;
+
 void setup() {
   fullScreen();
   setColors();
   setFonts();
   
   connexioBBDD();
+  
+  fotosOferta = getNombresTablaImagen();
+  int n = (int)random(fotosOferta.length);
+  fotoOfertaSeleccionada = fotosOferta[n];
 
   gui = new GUI();
 
@@ -38,8 +45,7 @@ void draw() {
     gui.dibuixaPantallaCistella();
     break;
   }
-  fill(0);
-  text (mouseX+", "+ mouseY, width-300, 100);
+  
 
   updateCursor();
 }

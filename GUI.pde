@@ -1,8 +1,10 @@
 class GUI {
   //Declaració Components GUI
 
+
+
   Confirm cLogout, cFinalizarPago;
-  PopUp pPasswMal, pUsuarioCreado, pUsuarioNoCreado, pCompraRealizada;
+  PopUp pPasswMal, pUsuarioCreado, pUsuarioNoCreado, pCompraRealizada, pProductoAdded;
 
   Button bLogin, bSignup, bEndRegister, bFinalitzarPagament, bPagar;
   TextField userText, passText, userRepeatPasswText, userPasswText, correuText, userNameText, nomText, llinatgesText, domiciliText, poblacioText, codiPostalText, targetaText, cadText, cvvText;
@@ -11,13 +13,18 @@ class GUI {
 
   LiniaCesta[] lineasCesta;
   int numLineasCesta = 0;
+  float totalCesta = 0;
 
   Carrousel c;
+  Carrousel d;
 
   // Noms de les imatges
   String[] noms = {"caixa.jpg", "capsa.jpg", "divertit.jpg",
     "ensalada.jpg", "pan.jpg", "saludable.jpg",
     "treballadora.jpg"};
+
+  String [] nombres = {"proteccio.jpg", "treballador.jpg", "carro.jpg", "hombre.jpg", "verdura.jpg"
+  };
 
   LinesDiagram s;
 
@@ -68,36 +75,40 @@ class GUI {
     bLogin = new Button("Log in", 904, 549, buttonW, 50);
     bEndRegister = new Button ("Finalizar registro", (width/2)-buttonW/2, 744, buttonW, 50);
     bSignup = new Button ("Sign up", 904, 726, buttonW, 50);
-    bFinalitzarPagament = new Button ("Finalizar pago", 34, 644, 711, 50);
+    bFinalitzarPagament = new Button ("Tramitar factura", 364, 644, 711, 50);
     userText = new TextField(853, 325, textFieldW, textFieldH);
     passText = new TextField(853, 437, textFieldW, textFieldH);
     userRepeatPasswText = new TextField ((width/2)-150, 644, 300, textFieldH);
     userPasswText = new TextField ((width/2)-150, 544, 300, textFieldH);
     correuText = new TextField ((width/2)-150, 444, 300, textFieldH);
     userNameText = new TextField ((width/2)-150, 344, 300, textFieldH);
-    nomText = new TextField (34, 218, 300, textFieldH);
-    llinatgesText = new TextField(345, 218, 400, textFieldH);
-    domiciliText = new TextField(34, 303, 711, textFieldH);
-    poblacioText = new TextField(34, 389, 300, textFieldH);
-    targetaText = new TextField(34, 472, 711, textFieldH);
-    cadText = new TextField(34, 558, 300, textFieldH);
-    cvvText = new TextField(345, 558, 200, textFieldH);
-    codiPostalText = new TextField(345, 558, 200, textFieldH);
+    nomText = new TextField (364, 218, 700, textFieldH);
+    //llinatgesText = new TextField(345, 218, 400, textFieldH);
+    domiciliText = new TextField(364, 303, 711, textFieldH);
+    poblacioText = new TextField(364, 389, 300, textFieldH);
+    targetaText = new TextField(364, 472, 711, textFieldH);
+    cadText = new TextField(364, 558, 300, textFieldH);
+    //cvvText = new TextField(674, 558, 200, textFieldH);
+    codiPostalText = new TextField(674, 558, 200, textFieldH);
     textAlign(CENTER);
-    bPagar = new Button("PAGAR", 364, 731, 711, 50);
+    bPagar = new Button("TRAMITAR FACTURA", 364, 731, 711, 50);
 
     imgLogin = loadImage ("data/usuari.png");
     imgMes = loadImage("mes.png");
     imgMenys = loadImage("menys.png");
     imgBlackFriday = loadImage ("bf.png");
     imgSale = loadImage("bigsale.jpg");
-    imgRebajas = loadImage ("rebajas.png");
+    imgRebajas = loadImage (fotoOfertaSeleccionada);
 
     c = new Carrousel(189, 150, 600, 630, 1);
     // Assigna les imatge al carrousel
     c.setImages(noms);
     // Assigna les imatges dels botons al carrousel
     c.setButtons("bPrev.png", "bNext.png");
+
+    d = new Carrousel (525, 200, 795, 500, 1);
+    d.setImages(nombres);
+    d.setButtons("bPrev.png", "bNext.png");
 
     t = new Timer(5);
 
@@ -112,7 +123,7 @@ class GUI {
     cLogout = new Confirm("Logout", "¿Quiere cerrar sesión?", (width/2)-300, (height/2)-170, 600, 340);
     cLogout.setVisible(false);
 
-    cFinalizarPago = new Confirm ("Finalizar Pago", "¿Quiere finalizar el pago?", (width/2)-300, (height/2)-170, 600, 340 );
+    cFinalizarPago = new Confirm ("Tramitar factura", "¿Quiere tramitar la factura?", (width/2)-300, (height/2)-170, 600, 340 );
     cFinalizarPago.setVisible(false);
 
     pPasswMal = new PopUp("¡¡CUIDADO!!", "El usuario o la contraseña no son correctos", (width/2)-300, (height/2)-170, 600, 340);
@@ -124,8 +135,11 @@ class GUI {
     pUsuarioNoCreado = new PopUp("¡¡CUIDADO!!", "Su usuario no se ha creado correctamente", (width/2)-300, (height/2)-170, 600, 340);
     pUsuarioNoCreado.setVisible(false);
 
-    pCompraRealizada = new PopUp("¡¡ENHORABUENA!!", "Su compra se ha realizado correctamente", (width/2)-300, (height/2)-170, 600, 340 );
+    pCompraRealizada = new PopUp("¡¡ENHORABUENA!!", "Su factura se ha tramitado correctamente", (width/2)-300, (height/2)-170, 600, 340 );
     pCompraRealizada.setVisible(false);
+    
+    pProductoAdded = new PopUp ("¡¡ENHORABUENA!!", "El producto se ha añadido a su cesta", (width/2)-300, (height/2)-170, 600, 340  );
+    pProductoAdded.setVisible(false);
 
     // Configuració de Dades (textos, valors, colors)
     s.setTexts(textos);
@@ -170,7 +184,10 @@ class GUI {
 
 
   void dibuixaPantallaInicial() {
-    
+   
+     d.display();
+    updateFoto();
+
     pushMatrix();
 
     fill(0);
@@ -179,10 +196,9 @@ class GUI {
     textAlign(CENTER);
     text("EL MEJOR SUPERMERCADO", 914, 772);
 
-    
+
     imageMode (CORNER);
     scale(0.5);
-    image(imgBlackFriday, 1000, 400, 1666, 1000);
     image (imgRebajas, 34, 400);
     popMatrix();
 
@@ -198,6 +214,7 @@ class GUI {
 
     strokeWeight(3);
     line(1083, 118, 1405, 118);
+    
 
     mb.display();
     if (menuOpened) {
@@ -239,6 +256,9 @@ class GUI {
     if (cLogout.visible) {
       cLogout.display();
     }
+    if (pProductoAdded.visible) {
+      pProductoAdded.display();
+    }
   }
 
   void dibuixaPantallaSignup() {
@@ -279,22 +299,22 @@ class GUI {
     textSize(24);
     textAlign(LEFT);
     line(1083, 118, 1405, 118);
-    text ("Nombre:", 34, 210);
-    text ("Apellidos:", 345, 210);
-    text ("Domicilio:", 34, 295);
-    text("Localidad:", 34, 384);
-    text("Núm. targeta:", 34, 464);
-    text("Fecha de caducidad:", 34, 550);
-    text ("Código Postal:", 345, 550);
+    text ("Nombre:", 364, 210);
+    //text ("Apellidos:", 345, 210);
+    text ("Domicilio:", 364, 295);
+    text("Localidad:", 364, 384);
+    text("Núm. targeta:", 364, 464);
+    text("Fecha de caducidad:", 364, 550);
+    text ("Código Postal:", 674, 550);
 
     nomText.display();
-    llinatgesText.display();
+    //llinatgesText.display();
     domiciliText.display();
     poblacioText.display();
     targetaText.display();
     bFinalitzarPagament.display(40);
     cadText.display();
-    cvvText.display();
+    //cvvText.display();
     codiPostalText.display();
     mb.display();
     if (menuOpened) {
@@ -308,6 +328,9 @@ class GUI {
     }
     if (cFinalizarPago.visible) {
       cFinalizarPago.display();
+    }
+    if (pCompraRealizada.visible) {
+      pCompraRealizada.display();
     }
   }
   void dibuixaPantallaCistella() {
@@ -336,9 +359,7 @@ class GUI {
       bOpcio3.display(20);
       bOpcio4.display(20);
     }
-    if (cLogout.visible) {
-      cLogout.display();
-    }
+
 
     for (int i=0; i<numLineasCesta; i++) {
       textSize(24);
@@ -347,6 +368,12 @@ class GUI {
       text (lineasCesta[i].pu, 324, 320 + 50*i);
       text (lineasCesta[i].cantidad, 830, 320 + 50*i);
       text(lineasCesta[i].ptotal, 1158, 320+50*i);
+    }
+
+    text(totalCesta, 1158, 600);
+
+    if (cLogout.visible) {
+      cLogout.display();
     }
   }
 
