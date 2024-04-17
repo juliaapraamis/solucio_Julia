@@ -51,7 +51,7 @@ class Carrousel {
   }
   
   void next(){
-    if(this.currentImage<this.numTotalImatges - this.numImatgesVisibles){
+    if(this.currentImage<(this.numTotalImatges - this.numImatgesVisibles)){
       this.currentImage++;
     }
   }
