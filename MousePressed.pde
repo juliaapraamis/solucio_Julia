@@ -28,6 +28,14 @@ void mousePressed() {
     println ("Opció 4 clickada");
     gui.cLogout.setVisible(true);
   }
+  
+  if (pantalla == PANTALLA.INICIAL){
+    
+    gui.d.checkButtons();
+  
+  }
+  
+  
 
 
 
@@ -136,10 +144,11 @@ void mousePressed() {
       if (gui.cs.shopButtonPressed()) {
          gui.pProductoAdded.setVisible(true);
       }
-      if (gui.pProductoAdded.visible && gui.pProductoAdded.bAceptar.mouseOverButton()) {
+      
+    }
+    if (gui.pProductoAdded.visible && gui.pProductoAdded.bAceptar.mouseOverButton()) {
         gui.pProductoAdded.setVisible(false);
       }
-    }
   }
 
   if (pantalla == PANTALLA.CISTELLA) {
