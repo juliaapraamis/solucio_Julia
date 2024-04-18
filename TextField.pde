@@ -58,7 +58,7 @@ class TextField {
         boolean isKeySmallLetter = (key >= 'a' && key <= 'z');
         boolean isKeyNumber = (key >= '0' && key <= '9');
         boolean isCaractSpecial = (key == '@' || key == '/' || key == ',' || key == 'ñ' || key == 'ç' || key == 'á' || key == 'à' || key == 'é'|| key =='è'|| key =='í'|| key =='ó'|| key =='ò'|| key =='ú'
-        || key == 'Ñ'|| key =='Ç'|| key =='À'|| key =='Á'|| key =='È'|| key =='É'|| key =='Í'|| key =='Ò'|| key =='Ó'|| key =='Ú');
+        || key == 'Ñ'|| key =='Ç'|| key =='À'|| key =='Á'|| key =='È'|| key =='É'|| key =='Í'|| key =='Ò'|| key =='Ó'|| key =='Ú'|| key =='.' );
         
 
         if (isKeyCapitalLetter || isKeySmallLetter || isKeyNumber || isCaractSpecial) {

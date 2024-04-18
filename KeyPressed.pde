@@ -19,6 +19,6 @@ void keyPressed() {
     gui.domiciliText.keyPressed(key, (int)keyCode);
     gui.poblacioText.keyPressed(key, (int)keyCode);
     gui.targetaText.keyPressed(key, (int)keyCode);
-    gui.cvvText.keyPressed(key, (int)keyCode);
+    //gui.cvvText.keyPressed(key, (int)keyCode);
   }
 }
